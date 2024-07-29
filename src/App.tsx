@@ -1,7 +1,7 @@
 import { Box, Button, Text } from '@0xsequence/design-system'
 import { useOpenConnectModal } from '@0xsequence/kit'
 import { useCheckoutModal, CheckoutSettings } from '@0xsequence/kit-checkout'
-import { encodeFunctionData, Hex } from 'viem'
+import { encodeFunctionData, Hex, toHex } from 'viem'
 import { useAccount, useDisconnect, usePublicClient, useWalletClient } from 'wagmi'
 
 import { SALES_CONTRACT_ABI } from './utils/abi'
@@ -43,13 +43,13 @@ function App() {
       abi: SALES_CONTRACT_ABI,
       functionName: 'mint',
       args: [
-        userAddress as Hex,
+        userAddress,
         [BigInt(1)],
         [BigInt(1)],
-        BigInt(0),
-        currencyAddress as Hex,
+        toHex(0),
+        currencyAddress,
         BigInt(currencyPrice),
-        BigInt(0)
+        [toHex(0, { size: 32 })],
       ]
     })
 
