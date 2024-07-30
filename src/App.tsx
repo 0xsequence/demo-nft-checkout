@@ -19,8 +19,8 @@ function App() {
       return
     }
 
-    const nftTokenAddress = '0x7204049549d6cdacfb6c8c07a479d80443838927'
-    const salesContractAddress = '0x9642c9070fc86838dc6be18f9aad3e7ad301acf6'
+    const nftTokenAddress = '0xa80f129750d800711372541122754a53d6716f55'
+    const salesContractAddress = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
     const currencyAddress = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359'
 
     const currencyPrice = '100000'
@@ -56,12 +56,12 @@ function App() {
     // https://dev.sequence.build/project/424/contracts/1088?view=read
     const checkoutSettings: CheckoutSettings = {
       creditCardCheckout: {
-        chainId: 421614,
+        chainId: 137,
         contractAddress: salesContractAddress,
         recipientAddress: userAddress || '',
         currencyQuantity: currencyPrice,
         currencySymbol: 'USDC',
-        currencyAddress: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+        currencyAddress,
         currencyDecimals: '6',
         nftId: '1',
         nftAddress: nftTokenAddress,
