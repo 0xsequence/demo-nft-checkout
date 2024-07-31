@@ -67,6 +67,7 @@ function App() {
         nftAddress: nftTokenAddress,
         nftQuantity: '1',
         nftDecimals: '0',
+        approvedSpenderAddress: salesContractAddress,
         calldata,
         // TODO: remove
         isDev: true,
