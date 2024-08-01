@@ -16,10 +16,11 @@ const queryClient = new QueryClient()
 export const Providers = ({
   children
 }: { children: React.ReactNode }) => {
-  const projectAccessKey = 'AQAAAAAAAEGvyZiWA9FMslYeG_yayXaHnSI'
+  const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY || 'AQAAAAAAAEGvyZiWA9FMslYeG_yayXaHnSI'
+  const walletConnectProjectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || 'c65a6cb1aa83c4e24500130f23a437d8'
 
   const connectors = getDefaultConnectors({
-    walletConnectProjectId: 'c65a6cb1aa83c4e24500130f23a437d8',
+    walletConnectProjectId,
     defaultChainId: ChainId.POLYGON,
     appName: 'demo app',
     projectAccessKey

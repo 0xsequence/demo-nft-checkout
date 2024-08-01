@@ -1,10 +1,14 @@
-import { Box, Button, Text } from '@0xsequence/design-system'
+import { Box, Button, Card, Image, Text } from '@0xsequence/design-system'
 import { useOpenConnectModal } from '@0xsequence/kit'
 import { useCheckoutModal, CheckoutSettings } from '@0xsequence/kit-checkout'
 import { encodeFunctionData, Hex, toHex } from 'viem'
 import { useAccount, useDisconnect, usePublicClient, useWalletClient } from 'wagmi'
 
 import { SALES_CONTRACT_ABI } from './utils/abi'
+
+const nftTokenAddress = '0xa80f129750d800711372541122754a53d6716f55'
+const salesContractAddress = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
+const currencyAddress = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359'
 
 function App() {
   const { address: userAddress, isConnected  } = useAccount()
@@ -18,10 +22,6 @@ function App() {
     if (!publicClient || !walletClient || !userAddress) {
       return
     }
-
-    const nftTokenAddress = '0xa80f129750d800711372541122754a53d6716f55'
-    const salesContractAddress = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
-    const currencyAddress = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359'
 
     const currencyPrice = '100000'
 
@@ -69,8 +69,7 @@ function App() {
         nftDecimals: '0',
         approvedSpenderAddress: salesContractAddress,
         calldata,
-        // TODO: remove
-        isDev: true,
+        isDev: location.hostname === "localhost",
         onSuccess: async (txnHash) => {
           await publicClient?.waitForTransactionReceipt({
             hash: txnHash as Hex,
@@ -86,20 +85,105 @@ function App() {
     triggerCheckout(checkoutSettings)
   }
 
-  if (!isConnected) {
+  const Header = () => {
     return (
-      <Box height="full" width="full" gap="2" flexDirection="column" background="backgroundPrimary">
-        <Text color="text100">Not Connected</Text>
-        <Button label="Connect" onClick={() => setOpenConnectModal(true)} />
-      </Box>
+      <>
+        <Text as="h2" variant="lg" color="text100" marginBottom="0">NFT Checkout Demo</Text>
+        <Image src="sequence-icon-cropped.png" style={{ width: 100 }} />
+        <Box marginTop="5" marginBottom="4" style={{ width: 600 }}>
+          <Text color="text100">This demo has been built using the &nbsp;
+            <Text 
+              color="text100"
+              as="a"
+              href={
+                "https://sequence.build"
+              }
+              target="_blank"
+              rel="noreferrer "
+            >
+              Sequence Builer
+            </Text> &nbsp;, used to create an NFT collection and an associated sales contract to mint new tokens. It demonstrates the ability to make purchases using a credit card.
+          </Text>
+        </Box>
+      </>
+    )
+  }
+
+  const Footer = () => {
+    return (
+      <Box>
+        <Text color="text100" variant="small">
+        Want to learn more? Read the{" "}
+        <Text
+          color="text100"
+          as="a"
+          href={
+            "https://docs.sequence.xyz/"
+          }
+          target="_blank"
+          rel="noreferrer "
+        >
+          docs
+        </Text>
+        !
+      </Text>
+    </Box>
+    )
+  }
+
+  const Content = () => {
+    if (!isConnected) {
+      return (
+        <Card justifyContent="center" alignItems="center" flexDirection="column" gap="3" style={{ width: 700 }}>
+          <Text color="text100">Not Connected</Text>
+          <Button label="Connect" onClick={() => setOpenConnectModal(true)} />
+        </Card>
+      )
+    }
+
+    const AddressDisplay = ({
+      label,
+      address
+    }: { label: string; address: string | Hex | uindefined }) => {
+
+      return (
+        <Box justifyContent="space-between">
+          <Text color="text100">
+            {label}: &nbsp;
+          </Text>
+          <Text
+            as="a"
+            color="text100"
+            href={`https://polygonscan.com/address/${address}`}
+            target="_blank"
+            rel="noreferrer "
+          >
+            {address}
+          </Text>
+        </Box>
+      )
+    }
+
+    return (
+      <Card justifyContent="center" alignItems="center" width="4" flexDirection="column" gap="3" style={{ width: 700 }}>
+        <Box gap="1" flexDirection="column">
+          <AddressDisplay label="User Address" address={userAddress} />
+          <AddressDisplay label="Sales Contract" address={salesContractAddress} />
+          <AddressDisplay label="NFT token Contract" address={nftTokenAddress} />
+          <AddressDisplay label="Payment currency Address" address={currencyAddress} />
+        </Box>
+
+        <Button label="Buy With Credit Card" onClick={onClickBuy} />
+        <Button label="Disconnect" onClick={disconnect} />
+      </Card>
     )
   }
 
   return (
-    <Box height="full" width="full" gap="2" flexDirection="column" background="backgroundPrimary">
-      <Text color="text100">Address: {userAddress}</Text>
-      <Button label="Buy With Credit Card" onClick={onClickBuy} />
-      <Button label="Disconnect" onClick={disconnect} />
+    <Box justifyContent="center" alignItems="center" width="full" gap="2" flexDirection="column" background="backgroundPrimary" style={{ height: '100vh' }}>
+      <Header />
+      <Content />
+      <Footer />
     </Box>
   )
 }
