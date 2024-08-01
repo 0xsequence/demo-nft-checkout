@@ -144,7 +144,7 @@ function App() {
     const AddressDisplay = ({
       label,
       address
-    }: { label: string; address: string | Hex | uindefined }) => {
+    }: { label: string; address: string | Hex | undefined }) => {
 
       return (
         <Box justifyContent="space-between">
