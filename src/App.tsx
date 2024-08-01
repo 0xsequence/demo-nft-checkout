@@ -1,4 +1,5 @@
-import { Box, Button, Card, Image, Text } from '@0xsequence/design-system'
+import { useState } from 'react'
+import { Badge, Box, Button, Card, Image, Text, CheckmarkIcon, Icon } from '@0xsequence/design-system'
 import { useOpenConnectModal } from '@0xsequence/kit'
 import { useCheckoutModal, CheckoutSettings } from '@0xsequence/kit-checkout'
 import { encodeFunctionData, Hex, toHex } from 'viem'
@@ -11,6 +12,7 @@ const salesContractAddress = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
 const currencyAddress = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359'
 
 function App() {
+  const [transactionHash, setTransactionHash] = useState<string>()
   const { address: userAddress, isConnected  } = useAccount()
   const { setOpenConnectModal } = useOpenConnectModal()
   const { disconnect } = useDisconnect()
@@ -71,10 +73,12 @@ function App() {
         calldata,
         isDev: location.hostname === "localhost",
         onSuccess: async (txnHash) => {
+          setTransactionHash(txnHash)
           await publicClient?.waitForTransactionReceipt({
             hash: txnHash as Hex,
             confirmations: 5
           })
+          // After confirmation, apis will detect ownership of the NFT
         },
         onError: error => {
           console.error(error)
@@ -88,7 +92,9 @@ function App() {
   const Header = () => {
     return (
       <>
-        <Text as="h2" variant="lg" color="text100" marginBottom="0">NFT Checkout Demo</Text>
+        <Text as="h2" variant="lg" color="text100" marginBottom="0">
+          NFT Checkout Demo
+        </Text>
         <Image src="sequence-icon-cropped.png" style={{ width: 100 }} />
         <Box marginTop="5" marginBottom="4" style={{ width: 600 }}>
           <Text color="text100">This demo has been built using the &nbsp;
@@ -148,10 +154,11 @@ function App() {
 
       return (
         <Box justifyContent="space-between">
-          <Text color="text100">
+          <Text variant="normal" color="text100" style={{ width: 205}}>
             {label}: &nbsp;
           </Text>
           <Text
+            variant="normal"
             as="a"
             color="text100"
             href={`https://polygonscan.com/address/${address}`}
@@ -172,8 +179,26 @@ function App() {
           <AddressDisplay label="NFT token Contract" address={nftTokenAddress} />
           <AddressDisplay label="Payment currency Address" address={currencyAddress} />
         </Box>
+        
+        {transactionHash && (
+          <Card flexDirection="row">
+            <CheckmarkIcon color="positive" />
+            <Text color="text100">
+              Congrats! You can now view the&nbsp;
+              <Text
+                as="a"
+                color="text100"
+                href={`https://polygonscan.com/tx/${transactionHash}`}
+                target="_blank"
+                rel="noreferrer "
+              >
+                successful transaction
+              </Text> 
+            </Text>
+          </Card>
+        )}
 
-        <Button label="Buy With Credit Card" onClick={onClickBuy} />
+        <Button variant="primary" label="Buy With Credit Card" onClick={onClickBuy} />
         <Button label="Disconnect" onClick={disconnect} />
       </Card>
     )
