@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { Box, Button, Card, Text, CheckmarkIcon } from '@0xsequence/design-system'
-import { useOpenConnectModal } from '@0xsequence/kit'
 import { useCheckoutModal, CheckoutSettings } from '@0xsequence/kit-checkout'
 import { encodeFunctionData, Hex, toHex } from 'viem'
 import { useAccount, useDisconnect, usePublicClient, useWalletClient } from 'wagmi'
 
+import { ItemsForSale } from './ItemsForSale'
 import { SALES_CONTRACT_ABI } from '../utils/abi'
 
 const nftTokenAddress = '0xa80f129750d800711372541122754a53d6716f55'
 const salesContractAddress = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
 const currencyAddress = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359'
+const chainId = 137
 
 export const Connected = () => {
   const [transactionHash, setTransactionHash] = useState<string>()
-  const { address: userAddress, isConnected  } = useAccount()
-  const { setOpenConnectModal } = useOpenConnectModal()
+  const { address: userAddress } = useAccount()
   const { disconnect } = useDisconnect()
   const { triggerCheckout } = useCheckoutModal()
   const publicClient = usePublicClient()
@@ -58,7 +58,7 @@ export const Connected = () => {
     // https://dev.sequence.build/project/424/contracts/1088?view=read
     const checkoutSettings: CheckoutSettings = {
       creditCardCheckout: {
-        chainId: 137,
+        chainId,
         contractAddress: salesContractAddress,
         recipientAddress: userAddress || '',
         currencyQuantity: currencyPrice,
@@ -139,6 +139,8 @@ export const Connected = () => {
           </Text>
         </Card>
       )}
+
+      <ItemsForSale chainId={chainId} collectionAddress={nftTokenAddress} />
 
       <Button variant="primary" label="Buy With Credit Card" onClick={onClickBuy} />
       <Button label="Disconnect" onClick={disconnect} />
