@@ -1,7 +1,8 @@
 import { 
   Box,
   Card,
-  Text
+  Text,
+  Spinner
 } from '@0xsequence/design-system'
 import { useAccount } from 'wagmi'
 
@@ -39,8 +40,16 @@ export const ItemsForSale = ({
 
   if (isLoading) {
     return (
-      <Box>
-        Loading
+      <Box
+        margin="2"
+        color="text100"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        gap="2"
+      >
+        <Text color="text100">Loading...</Text>
+        <Spinner />
       </Box>
     )
   }
@@ -62,7 +71,7 @@ export const ItemsForSale = ({
 
         return (
           <Card style={{ width: '200px' }}>
-            <CollectibleTileImage imageUrl={tokenMetadata.image} />
+            <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
 
             <Box flexDirection="column" marginTop="1">
               <Text variant="small" color="text100">
