@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Badge, Box, Button, Card, Image, Text, CheckmarkIcon, Icon } from '@0xsequence/design-system'
+import { Box, Button, Card, Image, Text, CheckmarkIcon } from '@0xsequence/design-system'
 import { useOpenConnectModal } from '@0xsequence/kit'
 import { useCheckoutModal, CheckoutSettings } from '@0xsequence/kit-checkout'
 import { encodeFunctionData, Hex, toHex } from 'viem'

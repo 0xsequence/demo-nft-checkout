@@ -6,10 +6,9 @@ import { getDefaultConnectors } from '@0xsequence/kit-connectors'
 import { KitCheckoutProvider } from '@0xsequence/kit-checkout'
 import { ChainId } from '@0xsequence/network'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Transport, zeroAddress } from 'viem'
+import { Transport } from 'viem'
 import { createConfig, http, WagmiProvider } from 'wagmi'
-import { mainnet, polygon, Chain } from 'wagmi/chains'
-import { sign } from 'viem/accounts'
+import { polygon, Chain } from 'wagmi/chains'
 
 const queryClient = new QueryClient()
 
