@@ -11,9 +11,15 @@ importers:
       0xsequence:
         specifier: ^1.9.37
         version: 1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+      '@0xsequence/api':
+        specifier: ^1.10.8
+        version: 1.10.8
       '@0xsequence/design-system':
         specifier: ^1.7.2
         version: 1.7.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(framer-motion@11.2.13(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@0xsequence/indexer':
+        specifier: ^1.10.8
+        version: 1.10.8
       '@0xsequence/kit':
         specifier: ^2.9.2
         version: 2.9.2(jyvvpmr3zwfite55vihgfr6lb4)
@@ -23,6 +29,9 @@ importers:
       '@0xsequence/kit-connectors':
         specifier: ^2.9.2
         version: 2.9.2(0xsequence@1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10))(@0xsequence/kit@2.9.2(jyvvpmr3zwfite55vihgfr6lb4))(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)(uuid@9.0.1)(viem@2.17.5(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10))(wagmi@2.11.2(@tanstack/query-core@5.51.9)(@tanstack/react-query@5.51.9(react@18.3.1))(@types/react@18.3.3)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.3(@babel/core@7.24.7)(@babel/preset-env@7.24.8(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.5.3)(utf-8-validate@5.0.10)(viem@2.17.5(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)))
+      '@0xsequence/metadata':
+        specifier: ^1.10.8
+        version: 1.10.8
       '@0xsequence/network':
         specifier: ^1.9.37
         version: 1.9.37(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -98,6 +107,9 @@ packages:
   '@0xsequence/account@1.9.37':
     resolution: {integrity: sha512-0kga75bJ6dLyp71KzGgUHTPkH0xmA0mrYBaJPDtV4JShBzxfKSSX1C0+lORAQ1h24fzJKQZKIW7cn5G3HJWhMA==}
 
+  '@0xsequence/api@1.10.8':
+    resolution: {integrity: sha512-hUu9i6GQnsbTIE6BViLkn9tzbvK8HZMY2Z8ihQfeY+EE+7jmzE6K9yFCyKMKOSVD238soJPWksEUhLLlpD6+Fw==}
+
   '@0xsequence/api@1.9.37':
     resolution: {integrity: sha512-KDV25VXWz95J6JLbOU8EuQKGNuDydnTW55Hly9qPSHXYH6kMIpSuPLdhLxOgqUoLaJmJ1FS17mfIPLrUNOUZzA==}
 
@@ -125,6 +137,9 @@ packages:
 
   '@0xsequence/guard@1.9.37':
     resolution: {integrity: sha512-PBivU+mVthUzm502eFFNE8EoNwEpQ6eug6jPs+HUfM5JCbtqfZp+wT4SMdl9PwGE+SLQtGZpivsdCGLFDqOjLg==}
+
+  '@0xsequence/indexer@1.10.8':
+    resolution: {integrity: sha512-RXQP0VEuJJl55i8joJOnG9BEKGl5AHfz/qszg1ENRuMFlc4QaXu+LZUswcm8wmGDeOBCSne198XtnOFmWk0SqQ==}
 
   '@0xsequence/indexer@1.9.37':
     resolution: {integrity: sha512-6ILda3lC7sM05ZeD7bhxmPtsIqnlvh94UQP4vGplUSuht+F3ut3a0xk27IKSM3h76H1fRBn04XrUFu/AOJi+Xw==}
@@ -166,6 +181,9 @@ packages:
       react-dom: '>=17'
       viem: '>=2.0.0'
       wagmi: '>=2.0.0'
+
+  '@0xsequence/metadata@1.10.8':
+    resolution: {integrity: sha512-Kq+IT2qZ/rcZY6WPCLr8zFTm4Rdd7j34qJsVEF8GsI/o/wMZ3kDTqb1DZhG4jkstFv48YekJsNEfkx8KgECQSA==}
 
   '@0xsequence/metadata@1.9.37':
     resolution: {integrity: sha512-IMO5oWQkMfzgzR4ARiiSB7i323Y0kWf50v8Tg/BCeROduDvBcGjbfvrtpkOmk8x9n/XE09W+8w7BS9iBNQwg2w==}
@@ -5674,6 +5692,8 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@0xsequence/api@1.10.8': {}
+
   '@0xsequence/api@1.9.37': {}
 
   '@0xsequence/auth@1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)':
@@ -5761,16 +5781,18 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@0xsequence/indexer@1.10.8': {}
+
   '@0xsequence/indexer@1.9.37': {}
 
   '@0xsequence/kit-checkout@2.9.2(oli33v3jvwjcpbqtdmlkmxna5q)':
     dependencies:
       0xsequence: 1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
-      '@0xsequence/api': 1.9.37
+      '@0xsequence/api': 1.10.8
       '@0xsequence/design-system': 1.7.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(framer-motion@11.2.13(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@0xsequence/indexer': 1.9.37
+      '@0xsequence/indexer': 1.10.8
       '@0xsequence/kit': 2.9.2(jyvvpmr3zwfite55vihgfr6lb4)
-      '@0xsequence/metadata': 1.9.37
+      '@0xsequence/metadata': 1.10.8
       '@0xsequence/network': 1.9.37(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@paperxyz/react-client-sdk': 1.1.5(@babel/core@7.24.7)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
       '@tanstack/react-query': 5.51.9(react@18.3.1)
@@ -5811,13 +5833,13 @@ snapshots:
   '@0xsequence/kit@2.9.2(jyvvpmr3zwfite55vihgfr6lb4)':
     dependencies:
       0xsequence: 1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
-      '@0xsequence/api': 1.9.37
+      '@0xsequence/api': 1.10.8
       '@0xsequence/auth': 1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@0xsequence/core': 1.9.37(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@0xsequence/design-system': 1.7.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(framer-motion@8.5.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@0xsequence/ethauth': 0.8.1(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      '@0xsequence/indexer': 1.9.37
-      '@0xsequence/metadata': 1.9.37
+      '@0xsequence/indexer': 1.10.8
+      '@0xsequence/metadata': 1.10.8
       '@0xsequence/network': 1.9.37(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@0xsequence/provider': 1.9.37(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@0xsequence/utils': 1.9.37(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -5836,6 +5858,8 @@ snapshots:
       - '@types/react-dom'
       - bufferutil
       - utf-8-validate
+
+  '@0xsequence/metadata@1.10.8': {}
 
   '@0xsequence/metadata@1.9.37': {}
 

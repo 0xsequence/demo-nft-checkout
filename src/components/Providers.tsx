@@ -10,12 +10,14 @@ import { Transport } from 'viem'
 import { createConfig, http, WagmiProvider } from 'wagmi'
 import { polygon, Chain } from 'wagmi/chains'
 
+import { useProjectAccessKey } from '../hooks/useProjectAccessKey'
+
 const queryClient = new QueryClient()
 
 export const Providers = ({
   children
 }: { children: React.ReactNode }) => {
-  const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY || 'AQAAAAAAADVH8R2AGuQhwQ1y8NaEf1T7PJM'
+  const projectAccessKey = useProjectAccessKey()
   const walletConnectProjectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || 'c65a6cb1aa83c4e24500130f23a437d8'
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
   const appleClientId = import.meta.env.VITE_APPLE_CLIENT_ID || 'com.horizon.sequence.waas'
