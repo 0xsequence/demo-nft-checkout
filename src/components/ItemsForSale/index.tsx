@@ -1,13 +1,26 @@
 import { 
   Box,
   Card,
+  TokenImage,
   Text,
   Spinner
 } from '@0xsequence/design-system'
+import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 
-import { CollectibleTileImage } from './CollectibleTileImage'
-import { useTokenMetadata, useCollectionBalance } from '../hooks/data'
+import { BuyWithCreditCardButton } from './BuyWithCreditCardButton'
+import { CollectibleTileImage } from '../CollectibleTileImage'
+import {
+  useTokenMetadata,
+  useCollectionBalance,
+  useContractInfo
+} from '../../hooks/data'
+import {  
+  CHAIN_ID,
+  itemsForSales,
+  NFT_TOKEN_ADDRESS,
+  salesCurrency,
+} from '../../constants'
 
 interface ItemsForSaleProps {
   collectionAddress: string
@@ -30,13 +43,15 @@ export const ItemsForSale = ({
   const { data: tokenMetadatas, isLoading: tokenMetadatasLoading } = useTokenMetadata(
     chainId,
     collectionAddress,
-    ['1', '2', '3', '4']
+    itemsForSales.map(item => item.tokenId)
   )
 
-  const isLoading = tokenMetadatasLoading || collectionBalanceIsLoading
+  const { data: currencyContractInfoData, isLoading: currencyContractInfoIsLoading } = useContractInfo(
+    CHAIN_ID,
+    salesCurrency.currencyAddress
+  )
 
-  // TODO: move buy button between each card
-  // add cache clearing onSuccess
+  const isLoading = tokenMetadatasLoading || collectionBalanceIsLoading || currencyContractInfoIsLoading
 
   if (isLoading) {
     return (
@@ -69,8 +84,14 @@ export const ItemsForSale = ({
 
         const amountOwned = collectibleBalance?.balance || '0'
 
+        const price = itemsForSales.find(item => (
+          item.tokenId === tokenMetadata.tokenId
+        ))?.priceRaw || '100000'
+
+        const priceFormatted = formatUnits(BigInt(price), salesCurrency.decimals)
+
         return (
-          <Card style={{ width: '200px' }}>
+          <Card style={{ width: '200px' }} gap="1" flexDirection="column">
             <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
 
             <Box flexDirection="column" marginTop="1">
@@ -80,10 +101,21 @@ export const ItemsForSale = ({
               <Text variant="small" color="text100">
                 {`Amount Owned: ${amountOwned}`}
               </Text>
+              <Box flexDirection="row" gap="1" alignItems="center">
+                <Text variant="small" color="text100">
+                  {`Price: ${priceFormatted}`}
+                </Text>
+                <TokenImage size="xs" src={currencyContractInfoData?.logoURI} />
+              </Box>
               <Text color="text100">
                 {tokenMetadata.name}
               </Text>
             </Box>
+            <BuyWithCreditCardButton
+              chainId={chainId}
+              collectionAddress={NFT_TOKEN_ADDRESS}
+              tokenId={tokenMetadata.tokenId}
+            />
           </Card>
         )
       })}
