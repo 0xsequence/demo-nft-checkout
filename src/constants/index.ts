@@ -1,6 +1,6 @@
 // sales params
-export const NFT_TOKEN_ADDRESS = '0xa80f129750d800711372541122754a53d6716f55'
-export const SALES_CONTRACT_ADDRESS = '0xdf96ab1fb12fe800fb1a64836c1949e2c162e830'
+export const NFT_TOKEN_ADDRESS = '0xe330d543e9189450c36dc873aa3ab14106b1ee87'
+export const SALES_CONTRACT_ADDRESS = '0xfdd0d596350a78c3852a43d3b5910154b7c644db'
 export const CHAIN_ID = 137
 
 // Assumption that all tokens have the same price...
@@ -37,6 +37,14 @@ export const itemsForSales: SaleItem[] = [
   },
   {
     tokenId: '4',
+    priceRaw: '100000'
+  },
+  {
+    tokenId: '5',
+    priceRaw: '100000'
+  },
+  {
+    tokenId: '6',
     priceRaw: '100000'
   }
 ] 
