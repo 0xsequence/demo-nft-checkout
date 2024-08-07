@@ -3,7 +3,8 @@ import {
   Card,
   TokenImage,
   Text,
-  Spinner
+  Spinner,
+  useMediaQuery
 } from '@0xsequence/design-system'
 import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
@@ -31,6 +32,7 @@ export const ItemsForSale = ({
   collectionAddress,
   chainId
 }: ItemsForSaleProps) => {
+  const isMobile = useMediaQuery('isMobile')
   const { address: userAddress } = useAccount()
   const { data: collectionBalanceData, isLoading: collectionBalanceIsLoading } = useCollectionBalance({
     accountAddress: userAddress || '',
@@ -92,7 +94,14 @@ export const ItemsForSale = ({
         const priceFormatted = formatUnits(BigInt(price), salesCurrency.decimals)
 
         return (
-          <Box padding="1" width="full" flexDirection="column" style={{ flexBasis: '50%' }}>
+          <Box
+            padding="1"
+            width="full"
+            flexDirection="column"
+            style={{
+              flexBasis: isMobile ? '100%' : '50%'
+            }}
+          >
             <Card>
               <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
 
