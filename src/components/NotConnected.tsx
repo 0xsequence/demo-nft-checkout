@@ -5,7 +5,7 @@ export const NotConnected = () => {
   const { setOpenConnectModal } = useOpenConnectModal()
 
   return (
-    <Card justifyContent="center" alignItems="center" flexDirection="column" gap="3" style={{ width: 700 }}>
+    <Card justifyContent="center" alignItems="center" flexDirection="column" gap="3" style={{ maxWidth: 700 }}>
       <Text color="text100">Not Connected</Text>
       <Button label="Connect" onClick={() => setOpenConnectModal(true)} />
     </Card>

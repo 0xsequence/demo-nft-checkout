@@ -72,10 +72,11 @@ export const ItemsForSale = ({
   return (
     <Box
       flexDirection={"row"}
-      justifyContent="space-between"
       alignItems="center"
-      gap="2"
       flexWrap="wrap"
+      style={{
+        width: 'calc(100% + 8px)'
+      }}
     >
       {tokenMetadatas?.map(tokenMetadata => {
         const collectibleBalance = collectionBalanceData?.find(balance => (
@@ -91,32 +92,36 @@ export const ItemsForSale = ({
         const priceFormatted = formatUnits(BigInt(price), salesCurrency.decimals)
 
         return (
-          <Card style={{ width: '200px' }} gap="1" flexDirection="column">
-            <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
+          <Box padding="1" width="full" flexDirection="column" style={{ flexBasis: '50%' }}>
+            <Card>
+              <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
 
-            <Box flexDirection="column" marginTop="1">
-              <Text variant="small" color="text100">
-                {`Token Id: ${tokenMetadata.tokenId}`}
-              </Text>
-              <Text variant="small" color="text100">
-                {`Amount Owned: ${amountOwned}`}
-              </Text>
-              <Box flexDirection="row" gap="1" alignItems="center">
+              <Box flexDirection="column" marginTop="1">
                 <Text variant="small" color="text100">
-                  {`Price: ${priceFormatted}`}
+                  {`Token Id: ${tokenMetadata.tokenId}`}
                 </Text>
-                <TokenImage size="xs" src={currencyContractInfoData?.logoURI} />
+                <Text variant="small" color="text100">
+                  {`Amount Owned: ${amountOwned}`}
+                </Text>
+                <Box flexDirection="row" gap="1" alignItems="center">
+                  <Text variant="small" color="text100">
+                    {`Price: ${priceFormatted}`}
+                  </Text>
+                  <TokenImage size="xs" src={currencyContractInfoData?.logoURI} />
+                </Box>
+                <Text color="text100">
+                  {tokenMetadata.name}
+                </Text>
               </Box>
-              <Text color="text100">
-                {tokenMetadata.name}
-              </Text>
-            </Box>
-            <BuyWithCreditCardButton
-              chainId={chainId}
-              collectionAddress={NFT_TOKEN_ADDRESS}
-              tokenId={tokenMetadata.tokenId}
-            />
-          </Card>
+              <Box marginTop="1">
+                <BuyWithCreditCardButton
+                  chainId={chainId}
+                  collectionAddress={NFT_TOKEN_ADDRESS}
+                  tokenId={tokenMetadata.tokenId}
+                />
+              </Box>
+            </Card>
+          </Box>
         )
       })}
     </Box>

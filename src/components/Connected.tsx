@@ -1,4 +1,4 @@
-import { Box, Button, Card, Text } from '@0xsequence/design-system'
+import { Box, Button, Card, Collapsible, Text, useMediaQuery } from '@0xsequence/design-system'
 import { Hex } from 'viem'
 import { useAccount, useDisconnect } from 'wagmi'
 
@@ -18,9 +18,13 @@ export const Connected = () => {
     label,
     address
   }: { label: string; address: string | Hex | undefined }) => {
+    const isMobile = useMediaQuery('isMobile')
+
     return (
-      <Box justifyContent="space-between">
-        <Text variant="normal" color="text100" style={{ width: 205}}>
+      <Box
+        justifyContent="space-between"
+      >
+        <Text variant="normal" color="text100" style={{ minWidth: 205}}>
           {label}: &nbsp;
         </Text>
         <Text
@@ -29,7 +33,8 @@ export const Connected = () => {
           color="text100"
           href={`https://polygonscan.com/address/${address}`}
           target="_blank"
-          rel="noreferrer "
+          rel="noreferrer"
+          ellipsis
         >
           {address}
         </Text>
@@ -38,13 +43,15 @@ export const Connected = () => {
   }
 
   return (
-    <Card justifyContent="center" alignItems="center" width="4" flexDirection="column" gap="3" style={{ width: 700 }}>
-      <Box gap="1" flexDirection="column">
-        <AddressDisplay label="User Address" address={userAddress} />
-        <AddressDisplay label="Sales Contract" address={SALES_CONTRACT_ADDRESS} />
-        <AddressDisplay label="NFT token Contract" address={NFT_TOKEN_ADDRESS} />
-        <AddressDisplay label="Payment currency Address" address={salesCurrency.currencyAddress} />
-      </Box>
+    <Card justifyContent="center" alignItems="center" width="4" flexDirection="column" gap="3" style={{ width: '100%', maxWidth: 700 }}>
+      <Collapsible label="Details for Nerds">
+        <Box gap="1" flexDirection="column">
+          <AddressDisplay label="User Address" address={userAddress} />
+          <AddressDisplay label="Sales Contract" address={SALES_CONTRACT_ADDRESS} />
+          <AddressDisplay label="NFT token Contract" address={NFT_TOKEN_ADDRESS} />
+          <AddressDisplay label="Payment currency Address" address={salesCurrency.currencyAddress} />
+        </Box>
+      </Collapsible>
       
       <ItemsForSale chainId={CHAIN_ID} collectionAddress={NFT_TOKEN_ADDRESS} />
 

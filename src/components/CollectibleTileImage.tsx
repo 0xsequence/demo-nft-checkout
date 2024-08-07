@@ -14,8 +14,9 @@ export const CollectibleTileImage = ({ imageUrl }: CollectibleTileImageProps) =>
       overflow="hidden"
       borderRadius="sm"
       background="backgroundSecondary"
+      width="full"
     >
-      <Image style={{ height: '100%' }} src={imageUrl} />
+      <Image style={{ width: '100%' }} src={imageUrl} />
     </Card>
   )
 }

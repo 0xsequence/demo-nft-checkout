@@ -103,7 +103,9 @@ export const BuyWithCreditCardButton = ({
     <Button
       size="sm"
       variant="primary"
-      label="Buy"
+      label="Purchase"
+      shape="square"
+      width="full"
       onClick={onClickBuy}
     />
   )

@@ -20,7 +20,7 @@ function App() {
   }
 
   return (
-    <Box justifyContent="center" alignItems="center" width="full" gap="2" flexDirection="column" background="backgroundPrimary" style={{ minHeight: '100vh' }}>
+    <Box padding="4" justifyContent="center" alignItems="center" width="full" gap="2" flexDirection="column" background="backgroundPrimary" style={{ minHeight: '100vh' }}>
       <Header />
       <Content />
       <Footer />
