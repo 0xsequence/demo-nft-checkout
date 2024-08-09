@@ -7,9 +7,9 @@ import { usePublicClient, useWalletClient, useAccount } from 'wagmi'
 import { SALES_CONTRACT_ABI } from '../../constants/abi'
 import {
   SALES_CONTRACT_ADDRESS,
-  salesCurrency,
   UNITARY_PRICE_RAW
 } from '../../constants'
+import { useSalesCurrency } from '../../hooks/useSalesCurrency'
 
 interface BuyWithCreditCardButtonProps {
   tokenId: string
@@ -27,9 +27,10 @@ export const BuyWithCreditCardButton = ({
   const publicClient = usePublicClient()
   const { data: walletClient } = useWalletClient()
   const { address: userAddress } = useAccount()
-  
+  const { data: currencyData, isLoading: currencyIsLoading } = useSalesCurrency()
+
   const onClickBuy = () => {
-    if (!publicClient || !walletClient || !userAddress) {
+    if (!publicClient || !walletClient || !userAddress || !currencyData) {
       return
     }
 
@@ -57,7 +58,7 @@ export const BuyWithCreditCardButton = ({
         [BigInt(tokenId)],
         [BigInt(1)],
         toHex(0),
-        salesCurrency.currencyAddress,
+        currencyData.address,
         BigInt(currencyPrice),
         [toHex(0, { size: 32 })],
       ]
@@ -70,9 +71,9 @@ export const BuyWithCreditCardButton = ({
         contractAddress: SALES_CONTRACT_ADDRESS,
         recipientAddress: userAddress || '',
         currencyQuantity: currencyPrice,
-        currencySymbol: salesCurrency.symbol,
-        currencyAddress: salesCurrency.currencyAddress,
-        currencyDecimals: String(salesCurrency.decimals),
+        currencySymbol: currencyData.symbol,
+        currencyAddress: currencyData.address,
+        currencyDecimals: String(currencyData.decimals),
         nftId: String(tokenId),
         nftAddress: collectionAddress,
         nftQuantity: '1',
@@ -101,6 +102,7 @@ export const BuyWithCreditCardButton = ({
 
   return (
     <Button
+      loading={currencyIsLoading}
       size="sm"
       variant="primary"
       label="Purchase"

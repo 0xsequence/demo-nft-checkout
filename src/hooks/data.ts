@@ -30,7 +30,7 @@ export const useTokenMetadata = (chainId: number, contractAddress: string, token
   })
 }
 
-export const useContractInfo = (chainId: number, contractAddress: string) => {
+export const useContractInfo = (chainId: number, contractAddress: string | undefined) => {
   const metadataClient = useMetadataClient()
 
   return useQuery({
@@ -38,7 +38,7 @@ export const useContractInfo = (chainId: number, contractAddress: string) => {
     queryFn: async () => {
       const res = await metadataClient.getContractInfo({
         chainID: String(chainId),
-        contractAddress
+        contractAddress: contractAddress || ''
       })
 
       return res.contractInfo
