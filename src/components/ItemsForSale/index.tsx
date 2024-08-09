@@ -1,16 +1,15 @@
 import { 
   Box,
   Card,
-  TokenImage,
   Text,
   Spinner,
   useMediaQuery
 } from '@0xsequence/design-system'
-import { formatUnits } from 'viem'
-import { useAccount, useReadContract } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 import { BuyWithCreditCardButton } from './BuyWithCreditCardButton'
 import { CollectibleTileImage } from '../CollectibleTileImage'
+import { CollectibleCardContent } from './CollectibleCardContent'
 import {
   useTokenMetadata,
   useCollectionBalance,
@@ -20,7 +19,7 @@ import {
   itemsForSales,
   NFT_TOKEN_ADDRESS,
 } from '../../constants'
- 
+
 interface ItemsForSaleProps {
   collectionAddress: string
   chainId: number
@@ -80,14 +79,7 @@ export const ItemsForSale = ({
           balance?.tokenID === tokenMetadata.tokenId 
         ))
 
-        const amountOwned = collectibleBalance?.balance || '0'
-
-        const price = itemsForSales.find(item => (
-          item.tokenId === tokenMetadata.tokenId
-        ))?.priceRaw || '100000'
-
-        const currencyDecimals = currencyData?.decimals || 0
-        const priceFormatted = formatUnits(BigInt(price), currencyDecimals)
+        const amountOwned: string = collectibleBalance?.balance || '0'
 
         return (
           <Box
@@ -102,21 +94,13 @@ export const ItemsForSale = ({
               <CollectibleTileImage imageUrl={tokenMetadata?.image || ''} />
 
               <Box flexDirection="column" marginTop="1">
-                <Text variant="small" color="text100">
-                  {`Token Id: ${tokenMetadata.tokenId}`}
-                </Text>
-                <Text variant="small" color="text100">
-                  {`Amount Owned: ${amountOwned}`}
-                </Text>
-                <Box flexDirection="row" gap="1" alignItems="center">
-                  <Text variant="small" color="text100">
-                    {`Price: ${priceFormatted}`}
-                  </Text>
-                  <TokenImage size="xs" src={currencyData?.logoURI} />
-                </Box>
-                <Text color="text100">
-                  {tokenMetadata.name}
-                </Text>
+                <CollectibleCardContent
+                  tokenId={tokenMetadata?.tokenId || ''}
+                  amountOwned={amountOwned}
+                  logoURI={currencyData?.logoURI}
+                  name={tokenMetadata?.name || ''}
+                  decimals={currencyData?.decimals || 0}
+                />
               </Box>
               <Box marginTop="1">
                 <BuyWithCreditCardButton
