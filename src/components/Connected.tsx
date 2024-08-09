@@ -72,21 +72,23 @@ export const Connected = () => {
                 {collectionName}
               </Text>
             </Box>
-            <Box gap="1" flexDirection="column">
-              <Text
-                variant="normal"
-                color="text100"
-                style={{ fontWeight: '700' }}
-              >
-                Description:
-              </Text>
-              <Text
-                variant="normal"
-                color="text100" 
-              >
-                {collectionDescription}
-              </Text>
-            </Box>
+            {collectionDescription && (
+              <Box gap="1" flexDirection="column">
+                <Text
+                  variant="normal"
+                  color="text100"
+                  style={{ fontWeight: '700' }}
+                >
+                  Description:
+                </Text>
+                <Text
+                  variant="normal"
+                  color="text100" 
+                >
+                  {collectionDescription}
+                </Text>
+              </Box>
+            )}
           </Box>
         )}
       </Collapsible>
