@@ -21,11 +21,11 @@ importers:
         specifier: ^1.10.11
         version: 1.10.13
       '@0xsequence/kit':
-        specifier: ^2.11.3
-        version: 2.11.3(xurxvvn5hpuwrqvnja7efl2hp4)
+        specifier: ^2.11.4
+        version: 2.11.4(xurxvvn5hpuwrqvnja7efl2hp4)
       '@0xsequence/kit-checkout':
-        specifier: ^2.11.3
-        version: 2.11.3(yaeaff7a354vxlsmiepegtkxyy)
+        specifier: ^2.11.4
+        version: 2.11.4(aehgvhoov653hkvfwawxv6rvo4)
       '@0xsequence/metadata':
         specifier: ^1.10.11
         version: 1.10.13
@@ -135,11 +135,11 @@ packages:
   '@0xsequence/indexer@1.10.13':
     resolution: {integrity: sha512-eHxI9PTmq+DJzfxvnyhOh5nuC8EBApXXWtmrgVzEyIpuBelNm+UHEegNr2K2Pj5dOheVaUGENf0A73mvPx0Hlg==}
 
-  '@0xsequence/kit-checkout@2.11.3':
-    resolution: {integrity: sha512-BumFSzVOu6JtkUhxZLJSv1WIUUuazsBB0PYP1ic1lALRb6s1yPpMgTvgiyszBowmhryCGnJEZMtfZhkFGFwmMQ==}
+  '@0xsequence/kit-checkout@2.11.4':
+    resolution: {integrity: sha512-yG+syyQY/pv0yKQVH4QC55uYz79o0Z77SA2Yo+aGuswgwEhGxWmxZhT51NXIHGjb5oyJDd1S+GxhO+AP/aVqmA==}
     peerDependencies:
       '@0xsequence/design-system': '>= 1.7.3'
-      '@0xsequence/kit': 2.11.3
+      '@0xsequence/kit': 2.11.4
       ethers: '>= 5.7.2 < 6'
       framer-motion: '>= 8.5.2'
       react: '>= 17'
@@ -147,8 +147,8 @@ packages:
       viem: '>= 2.0.0'
       wagmi: '>= 2.0.0'
 
-  '@0xsequence/kit@2.11.3':
-    resolution: {integrity: sha512-sk7o229kwwPBj2BPpDLS/l8VIZ9VSO+SFou4wXtq3PCrJ6fpFyL80EdLFSpvrBqKmVeT6erNMY2Cv9mbM/Ytdw==}
+  '@0xsequence/kit@2.11.4':
+    resolution: {integrity: sha512-qF6+KKqaxnqsXMNeszS5xviHrq7wEFXk97jCouUyYiPG1k9d048o1Mykt92tiuzvUPjzqrGeHsgCf8GjRmnmHA==}
     peerDependencies:
       0xsequence: '>= 1.10.9'
       '@0xsequence/waas': '>= 1.10.9'
@@ -5825,13 +5825,13 @@ snapshots:
 
   '@0xsequence/indexer@1.10.13': {}
 
-  '@0xsequence/kit-checkout@2.11.3(yaeaff7a354vxlsmiepegtkxyy)':
+  '@0xsequence/kit-checkout@2.11.4(aehgvhoov653hkvfwawxv6rvo4)':
     dependencies:
       0xsequence: 1.10.13(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@0xsequence/api': 1.10.13
       '@0xsequence/design-system': 1.7.5(@types/react-dom@18.3.0)(@types/react@18.3.4)(framer-motion@11.3.28(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@0xsequence/indexer': 1.10.13
-      '@0xsequence/kit': 2.11.3(xurxvvn5hpuwrqvnja7efl2hp4)
+      '@0xsequence/kit': 2.11.4(xurxvvn5hpuwrqvnja7efl2hp4)
       '@0xsequence/metadata': 1.10.13
       '@0xsequence/network': 1.10.13(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@paperxyz/react-client-sdk': 1.1.5(@babel/core@7.25.2)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
@@ -5849,7 +5849,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@0xsequence/kit@2.11.3(xurxvvn5hpuwrqvnja7efl2hp4)':
+  '@0xsequence/kit@2.11.4(xurxvvn5hpuwrqvnja7efl2hp4)':
     dependencies:
       0xsequence: 1.10.13(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@0xsequence/api': 1.10.13
